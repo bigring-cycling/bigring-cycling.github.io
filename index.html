@@ -1,8 +1,58 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style type='text/css'>
+body {
+    background: #333 repeat url('bigring-bg.png');
+    }
+div.body-text {position: absolute;top:-1000px;}
+div.poster {}
+div.poster img {
+    width:100%;
+    max-width:1130px;
+    height:auto;
+    display: block;
+    margin: auto;}
+div.posterlink {
+ display:inline-block;color:white;font-family: 'Roboto Condensed', sans-serif;font-weight: 700;font-size: 26px;;
+    }
+.posterlink a,.posterlink a:link,.posterlink a:visited,.posterlink a:active {
+    color: #ff5705;
+    text-decoration: none;    
+    }
+.posterlink a:hover{
+    color: #ff8100; 
+    }
+    .stripe {
+        max-width:1130px;
+        background:repeat-y url('bigring-bg-graystrip.png');
+        margin:auto;
+        background-size: cover;
+        padding-top: 30px;
+        
+    }
+@media only screen and (max-width: 1000px) {
+  div.posterlink {font-size: 2.65vw;}
+  div.stripe {padding-top: 2.5vw;}
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap" rel="stylesheet">
+<title>Big Ring Cycling - TNT</title>
+</head>
 <body>
-<h1>Hello World!!</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<div style="max-width:1100px;margin:auto;"><iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=ZnFqZmEwcTYxcHFlZTBvcTZpNDlkYW5vMzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23EF6C00&amp;showTabs=0&amp;showPrint=0&amp;showDate=1&amp;showNav=1&amp;showTitle=0&amp;showTz=0&amp;showCalendars=0" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe></div>
+<div class="body-text">
+<h1>BigRing Cycling - TNT</h1>
+<p>Weekly Criterium/Circuit Race Practice! Have fun racing with fellow cyclists that love to go fast.  
+    All levels welcome from elite to just-getting-started.  Masters, Womens and Novice heats are 2 laps, Open is 4 laps</p>
+<p>BigRing Cycling is dedicated to providing a supportive and safe environment 
+    for cyclists of all levels to learn and practice the art of racing.  Come join us!</p>
+</div>
+<div class='poster'><img src="BigRingPoster-top.png" usemap="#poster"></div>
+<div class='poster'><div class="stripe">
+    <div style='width:16.25%; display:inline-block;'></div>
+    <div style='width:40.5%' class='posterlink'><a href="https://www.google.com/maps/place/40%C2%B009'35.8%22N+88%C2%B016'58.0%22W/@40.159951,-88.2833172,19z">Google Maps Location &raquo;</a></div>
+    <div style='width:30%;' class='posterlink'><a href="BigRingPoster.pdf">Download Poster &raquo;</a></div>
+    </div></div>
+<div class='poster'><img src="BigRingPoster-bottom.png" usemap="#poster"></div>
 </body>
 </html>
