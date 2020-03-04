@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=500, initial-scale=1">
 <style type='text/css'>
 body {
     background: #333 repeat url('bigring-bg.png');
+    font-family: Segoe, 'Segoe UI', 'Helvetica Neue', HelveticaNeue-Light, 'Helvetica Neue Light', Arial, sans-serif;
     }
 div.body-text {position: absolute;top:-1000px;}
 div.poster {}
@@ -31,10 +33,46 @@ div.posterlink {
         padding-top: 30px;
         
     }
+.footer {
+    margin: auto;
+    background: none;
+    max-width: 1130px;
+    padding: 0px;
+    margin-bottom: 40px;
+}
+.innerfooter {
+    margin: auto;
+    background: rgba(30,30,30,.9);
+    max-width: 90.75%;
+    padding: 0px;
+}
+.innerfooter-content {
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size:20px;
+}
+.innerfooter-content a {
+    display: inline-block;
+    padding-right: 20px;
+    color: #ff5705;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.innerfooter-content a img:hover{
+      -webkit-filter: grayscale(100%) brightness(49%) sepia(100%) hue-rotate(-28deg) saturate(770%) contrast(0.8);
+      filter: grayscale(100%) brightness(49%) sepia(100%) hue-rotate(-28deg) saturate(770%) contrast(0.8);
+    }
 @media only screen and (max-width: 1000px) {
   div.posterlink {font-size: 2.65vw;}
   div.stripe {padding-top: 2.5vw;}
 }
+@media only screen and (max-width: 1000px) {.innerfooter-content {font-size:18px;}}
+@media only screen and (max-width: 700px) {.innerfooter-content {font-size:16px;}}
+@media only screen and (max-width: 600px) {.innerfooter-content {font-size:14px;}}
+@media only screen and (max-width: 500px) {.innerfooter-content {font-size:12px;}}
+    
 </style>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap" rel="stylesheet">
 <title>Big Ring Cycling - TNT</title>
@@ -54,5 +92,6 @@ div.posterlink {
     <div style='width:30%;' class='posterlink'><a href="BigRingPoster.pdf">Download Poster &raquo;</a></div>
     </div></div>
 <div class='poster'><img src="BigRingPoster-bottom.png" usemap="#poster"></div>
+    <div class='footer'><div class='innerfooter'><div class='innerfooter-content'><span style="display:inline-block;vertical-align: middle">Contact Jeff Decker:&nbsp;</span><a href='mailto:roushaholic@gmail.com'>roushaholic@gmail.com</a><a href='https://www.facebook.com/BigRingCyclingTeam/'><img src="icon-facebook.png" style='width:30px;height:auto;'></a><a href='https://www.strava.com/clubs/BigRingCU' style='padding-right: 0px;'><img src="icon-strava.png" style='width:30px;height:auto;'></a></div></div></div>
 </body>
 </html>
