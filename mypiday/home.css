@@ -1,0 +1,22 @@
+#loading-overlay {
+	/*width:100%;*/
+	/*height:100%;*/
+	position:relative;
+	/*background-color:#000000;*/
+	z-index:100;
+	/*-webkit-transform-style: preserve-3d;*/
+  	/*-moz-transform-style: preserve-3d;*/
+	/*transform-style: preserve-3d;*/
+	display: inline-block;
+	opacity:0;
+	top: 5px;
+	left: -30px;
+}
+#loading-overlay.results {
+	display:block;
+}
+#loading-overlay img {}
+
+#inputcontainer {
+	position:relative;
+}

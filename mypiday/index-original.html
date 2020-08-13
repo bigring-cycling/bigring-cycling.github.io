@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Let the Wolfram Language generate your own personal piece of Pi. Enter your birthday or any other date to see how many digits it takes to get there.">
+<title>Find Your Pi Day</title>
+<meta property="og:image" content="http://mypiday.com/results/foundmypiday.gif">
+<link href="styles.css" rel="stylesheet" type="text/css" />
+<link href="home.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" type="image/x-icon" href="http://mypiday.com/favicon.ico?v=2">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="//www.wolframcdn.com/consent/cookie-consent.js"></script>
+ <script type="text/javascript">
+     
+function logData(inputdata) {
+//alert("&date=" + inputdata["value"] + "&input=" + $("#date").val())
+//orig databin: 3LnE17R5
+$.ajax({ type: "POST",
+    url: "https://datadrop.wolframcloud.com/api/v1.0/Add?bin=k179D9hq&date=" + encodeURI(inputdata["value"]) + "&input=" + encodeURI($("#date").val()),
+    data: {},
+    cache:false,
+    success: function(output){}
+});
+}
+
+function logBadParse() {
+$.ajax({ type: "POST",
+    url: "https://datadrop.wolframcloud.com/api/v1.0/Add?bin=b0eVHgHU&input=" + encodeURI($("#date").val()),
+    data: {},
+    cache:false,
+    success: function(output){}
+});
+}
+     
+$("document").ready(function(){
+  $( "#date-entry" ).fadeTo( 500, 1);
+    
+  $( "#headerblock" ).click(function() {window.location.href = "http://www.wolfram.com/";});
+    
+  $("#dateform").submit(function(){
+	$( "#loading-overlay" ).fadeTo( 500, 1);
+	var data = {
+	  "action": "test"
+	};
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax({
+	  type: "GET",
+	  dataType: "json",
+	  url: "https://www.wolframcloud.com/objects/user-ca9f3e2e-1c45-4ace-b963-26377fcaa848/mypiday/datevalidator3",
+	  data: data,
+	  success: function(data) {
+		if(data["valid"] == true) {
+            logData(data);
+			window.location.href = "results/?date="+data["value"]+"&ck="+data["ck"]+"";
+			$( "#loading-overlay" ).fadeTo( 500, 0);
+		} else {
+            logBadParse();
+			$("#errors").html(
+			  "It looks like something is wrong with your date.  Please try again."
+			);
+			$( "#loading-overlay" ).fadeTo( 500, 0);
+		}
+	  }
+	});
+	return false;
+  });
+});
+</script>
+</head>
+<body class="home">
+<noscript>
+    <div style="position: fixed; top: 0px; left: 0px; z-index: 9000; 
+                height: 100%; width: 100%; background-color: #000000;">
+        <p style="text-align:center; color:#ffffff;font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;">We're sorry but interacting with this site <strong>requires</strong> JavaScript.</p>
+    </div>
+</noscript>
+<div id="headerblock"><span style="font-weight:300;">Powered By</span> Wolfram</div>
+<!-- <div id="loading-overlay"><img src="homeloader.gif" width="24" height="24" /></div> -->
+<div id="home-container">
+	<div id="date-entry">
+    	<p id="title">Find Your Pi&nbsp;Day</p>
+    	<form id="dateform" name="dateform" method="get" action="">
+    	  <input type="text" name="date" id="date" placeholder="Enter your birthdate (or other date) in any format" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your birthdate (or other date) in any format'" /><img id="loading-overlay" src="homeloader.gif" width="24" height="24" />
+  	  </form>
+      <div id="errors"></div>
+	</div>
+</div>
+    <div id="site-footer"><span id="copyrightone"><a href="http://www.wolfram.com/" class="withicon" target="_blank">&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Wolfram&nbsp;&nbsp;&nbsp;&nbsp;</a></span> <a href="http://www.wolfram.com/language/" class="withicon" target="_blank"><img src="icon-wolflang.png" width="40" height="29" />&nbsp;ABOUT&nbsp;WOLFRAM&nbsp;LANGUAGE</a> <a href="http://blog.wolfram.com/2015/03/12/pi-or-pie-celebrating-pi-day-of-the-century/" target="_blank">the&nbsp;backstory&nbsp;&raquo;</a><!--<a href="http://mypiday.com/about-pi/">about pi &raquo;</a>--><a href="http://mypiday.com/about-this-site/" class="aboutthissite">about&nbsp;this&nbsp;site&nbsp;&raquo;</a> <a href="https://www.wolfram.com/legal/privacy/wolfram-research.html" class="privacypolicy">privacy&nbsp;policy&nbsp;&raquo;</a> <span id="copyrighttwo">&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Wolfram&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+</body>
+</html>
