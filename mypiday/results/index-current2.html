@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Find Your Pi Day: Results</title>
+	<!--meta property="og:image" content="http://mypiday.com/results/foundmypiday.gif"/--><meta property="og:description" content="Hey, I found my Pi Day at mypiday.com. Share yours?" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:image:src" expr:content="http://mypiday.com/results/foundmypiday.gif"><meta name="twitter:title" content="MyPiDay.com"><meta name="twitter:description" content="Found my Pi Day at mypiday.com. Share yours? #mypiday #wolfram">
+	<link href="../styles.css" rel="stylesheet" type="text/css" />
+	<link href="../results.css" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic" rel="stylesheet" type="text/css" />
+	<link href="http://mypiday.com/favicon.ico?v=2" rel="shortcut icon" type="image/x-icon" />
+	<link href="/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" />
+	<link href="/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60" />
+	<link href="/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" />
+	<link href="/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+	<link href="/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" />
+	<link href="/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+	<link href="/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" />
+	<link href="/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+	<link href="/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+	<link href="/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png" />
+	<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+	<link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+	<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+	<link href="/manifest.json" rel="manifest" /><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet" /><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+	<script src="https://www.wolframcdn.com/consent/cookie-consent.js"></script>
+	<script src="https://www.wolfram.com/common/javascript/wal/latest/walLoad.js"></script>
+
+<script type="text/javascript">
+function isMobile() {try{ document.createEvent("TouchEvent"); return true; } catch(e){ return false; }}
+function isMobile2() {
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) { 
+  return true} else {return false}
+}
+var mobileQ = 0;
+if (isMobile() && isMobile2()) {
+    mobileQ=1;
+}
+     
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+     
+function logThingsClick() {
+$.ajax({ type: "POST",
+    url: "https://datadrop.wolframcloud.com/api/v1.0/Add?bin=bbMwl5EE&click=1",
+    data: {},
+    cache:false,
+    success: function(output){}
+});
+}
+     
+$("document").ready(function(){
+    
+  $( "#headerblock" ).click(function() {window.location.href = "http://www.wolfram.com/";});
+    if (getParameterByName('ck')=="") {window.location.href = "../index.html"};
+    if (mobileQ==0) {$( "#thingsToTry" ).show();}
+    
+    //$( "#thingsToTry" ).click(function() {
+    //    logThingsClick();
+    //    window.location.href = "";
+    //});
+    
+	data = { date: getParameterByName('date') }
+	var img = document.createElement('img');
+    $(img).load(function() {
+      //display("Image <code>load</code> event received");
+	  $( "#loading-overlay" ).fadeOut( 500 );
+	  $( "#results-container" ).fadeIn( 500 );
+	  if (document.documentElement.clientWidth > 500) {
+		  jQuery('html, body').delay(700).animate({ scrollTop: $('#image')[0].scrollHeight/1.35}, 2000, 'easeOutQuint');
+	  }
+    });
+    var tmpsrc = "https://www.wolframcloud.com/objects/microsites/mypiday/pidayImageWeb2?date="+getParameterByName('date')+"&ck="+getParameterByName('ck');
+    if (getParameterByName('maxres').length!=0) {
+    	tmpsrc=tmpsrc+"&maxres="+getParameterByName('maxres');}
+    if (getParameterByName('removecache').length!=0) {
+    	tmpsrc=tmpsrc+"&removecache="+getParameterByName('removecache');}
+    	
+	$.ajax({
+	  type: "GET",
+	  dataType: "json",
+	  url: "https://www.wolframcloud.com/objects/microsites/mypiday/cksum?date="+getParameterByName('date')+"&ck="+getParameterByName('ck'),
+	  data: data,
+	  success: function(data) {
+		if(data["valid"] == false) {
+			window.location.href = "../index.html";
+		} else {
+			img.src = tmpsrc;
+    		$("#image").append(img); //show main image
+            $("#posterlink").attr("href", "http://www.zazzle.com/api/create/at-238436619760262101?rf=238436619760262101&ax=Linkover&pd=228158794397448293&fwd=ProductPage&ed=true&tc&ic&t_image1_iid=http%3A%2F%2Fwww.wolframcloud.com%2Fobjects%2Fmicrosites%2Fmypiday%2FpidayZazzleT%3Fdate%3D"+getParameterByName('date')+"%26ck%3D"+getParameterByName('ck'));
+            $("#tshirtlink").attr("href", "http://www.zazzle.com/api/create/at-238436619760262101?rf=238436619760262101&ax=Linkover&pd=235580467374193131&fwd=ProductPage&ed=true&tc&ic&t_image1_iid=http%3A%2F%2Fwww.wolframcloud.com%2Fobjects%2Fmicrosites%2Fmypiday%2FpidayZazzleT%3Fdate%3D"+getParameterByName('date')+"%26ck%3D"+getParameterByName('ck'));
+        //logData();
+		}
+	  }
+	});
+	
+});
+
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
+</script><script type="text/javascript">var switchTo5x=true;</script>
+</head>
+<body>
+<p><img src="foundmypiday.gif" style="display:none;" /> <noscript>
+    <div style="position: fixed; top: 0px; left: 0px; z-index: 9000; 
+                height: 100%; width: 100%; background-color: #000000;">
+        <p style="text-align:center; color:#ffffff;font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;">We're sorry but interacting with this site <strong>requires</strong> JavaScript.</p>
+    </div>
+</noscript></p>
+
+<div class="results" id="loading-overlay"><img data-pin-nopin="true" height="327" src="../piloader.gif" width="350" /></div>
+
+<div id="headerblock"><span style="font-weight:300;">Powered By</span> Wolfram</div>
+
+<div id="results-container">
+<div id="image"></div>
+
+<div id="footer">
+<div class="footer-ctas"><!--<p>Share your pi day:&nbsp;
+            	<span id="sharers">
+                    <span id="twitter1" class='st_twitter_large' displayText='Tweet'></span>
+                    <span class='st_facebook_large' displayText='Facebook'></span>
+                    <span id="pinterest1" class='st_pinterest_large' displayText='Pinterest'></span>
+                    <span class='st_email_large' displayText='Email'></span>
+                </span>
+                <script type="text/javascript"> document.getElementById("twitter1").setAttribute("st_title","Found my Pi Day at mypiday.com. Share yours? #mypiday #wolfram") </script>
+				<script type="text/javascript"> document.getElementById("pinterest1").setAttribute("st_title","Found my Pi Day!") </script>
+            </p>-->
+<p><a class="clear clickanotherdate" href="../index.html">Enter another date &raquo;</a></p>
+</div>
+</div>
+<a id="thingsToTry" style="display:none;"></a>
+
+<div id="thingsToTryContainer"><a href="https://www.open.wolframcloud.com/obj/cloud-content/FunWithPi.nb?funnel=OpenCloudContent#sidebar=sandbox-notebook-links" id="thingsToTry" style=""><img src="thingsToTry2.png" style="width:640px;height:70px;" /></a></div>
+
+<div id="results">
+<div class="ctas">
+
+    <p><a class="clear clickgettshirt" id="tshirtlink" target="zazzle">Get a T-shirt with your pi day &raquo;</a></p>
+<a class="clear clickgettshirt" id="tshirtlink" target="zazzle"><img data-pin-nopin="true" height="273" src="icon-tshirt.png" width="299" /></a>
+
+<p><a class="clear clickgetposter" id="posterlink" target="zazzle">Get a poster with your pi day &raquo;</a></p>
+<a class="clear clickgetposter" id="posterlink" target="zazzle"><img data-pin-nopin="true" height="313" src="icon-poster.png" width="248" /></a></div>
+</div>
+
+<div id="site-footer"><span id="copyrightone"><a class="withicon" href="http://www.wolfram.com/" target="_blank">&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Wolfram&nbsp;&nbsp;&nbsp;&nbsp;</a></span> <a class="withicon" href="http://www.wolfram.com/language/" target="_blank"><img height="29" src="../icon-wolflang.png" width="40" />&nbsp;POWERED BY&nbsp;WOLFRAM&nbsp;LANGUAGE</a> <a href="http://blog.wolfram.com/2015/03/12/pi-or-pie-celebrating-pi-day-of-the-century/" target="_blank">the&nbsp;backstory&nbsp;&raquo;</a><!--<a href="http://mypiday.com/about-pi/">about pi &raquo;</a>--><a class="aboutthissite" href="http://mypiday.com/about-this-site/">about&nbsp;this&nbsp;site&nbsp;&raquo;</a> <a class="privacypolicy" href="https://www.wolfram.com/legal/privacy/wolfram-research.html">privacy&nbsp;policy&nbsp;&raquo;</a> <span id="copyrighttwo">&copy;&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;Wolfram&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+</div>
+</body>
+</html>
